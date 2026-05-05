@@ -51,7 +51,7 @@ export function HeroSection() {
               transition={{ delay: 0.9, duration: 0.6, ease: "easeOut" }}
               className="max-w-2xl font-display text-2xl italic leading-relaxed text-[var(--color-cream-muted)] md:text-3xl"
             >
-              Celebramos o inÃ­cio do nosso para sempre.
+              Celebramos o inicio do nosso para sempre.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, scale: 0.96 }}

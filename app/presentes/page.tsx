@@ -3,6 +3,8 @@ import { PresenteGrid } from "@/components/presentes/PresenteGrid";
 import { getPresentes } from "@/db/queries";
 import { GIFT_COLOR_NOTE } from "@/lib/constants";
 
+export const dynamic = "force-dynamic";
+
 export default async function PresentesPage() {
   const presentes = await getPresentes();
 

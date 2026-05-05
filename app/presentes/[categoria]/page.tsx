@@ -3,6 +3,8 @@ import { PresenteGrid } from "@/components/presentes/PresenteGrid";
 import { getPresentes } from "@/db/queries";
 import { filterPresentesByCategory } from "@/lib/utils";
 
+export const dynamic = "force-dynamic";
+
 export default async function PresentesCategoriaPage({
   params,
 }: {

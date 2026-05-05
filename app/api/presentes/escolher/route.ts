@@ -1,3 +1,4 @@
+import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 import { getGuestReservationByPhone, reserveGiftForGuest } from "@/db/queries";
 import { formatPhone, normalizePhone } from "@/lib/utils";
@@ -29,6 +30,9 @@ export async function POST(request: Request) {
       nome: nome.trim(),
       telefone,
     });
+
+    revalidatePath("/presentes");
+    revalidatePath("/admin");
 
     return NextResponse.json({ ok: true, presentes });
   } catch (error) {

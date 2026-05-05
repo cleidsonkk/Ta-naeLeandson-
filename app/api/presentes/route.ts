@@ -1,3 +1,4 @@
+import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 import { getAdminSession } from "@/lib/admin-auth";
 import { createGift, getPresentes } from "@/db/queries";
@@ -45,6 +46,9 @@ export async function POST(request: Request) {
       categoria: body.categoria,
       imagemUrl: body.imagemUrl,
     });
+
+    revalidatePath("/presentes");
+    revalidatePath("/admin");
 
     return NextResponse.json({ ok: true, presente }, { status: 201 });
   } catch {

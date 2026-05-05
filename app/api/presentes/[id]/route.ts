@@ -1,3 +1,4 @@
+import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 import { updateGiftById } from "@/db/queries";
 import { getAdminSession } from "@/lib/admin-auth";
@@ -24,6 +25,9 @@ export async function PATCH(
       categoria: typeof body.categoria === "string" ? body.categoria : undefined,
       imagemUrl: typeof body.imagemUrl === "string" ? body.imagemUrl : undefined,
     });
+
+    revalidatePath("/presentes");
+    revalidatePath("/admin");
 
     return NextResponse.json({ ok: true, presente });
   } catch (error) {
