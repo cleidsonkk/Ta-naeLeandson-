@@ -41,7 +41,9 @@ export function usePresentes(initialPresentes: Presente[]) {
       return false;
     }
 
-    toast.success("Presente reservado com carinho. Obrigado!");
+    toast.success("Reserva confirmada com sucesso.", {
+      description: `${payload.nome.trim()}, seu presente foi registrado com carinho em nossa lista.`,
+    });
     setPresentes(data.presentes);
     return true;
   }
