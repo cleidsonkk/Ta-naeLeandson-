@@ -32,12 +32,12 @@ export function PresenteForm({
 
   async function handleSave() {
     if (nome.trim().length < 2) {
-      toast.error("Informe um nome valido para o presente.");
+      toast.error("Informe um nome válido para o presente.");
       return;
     }
 
     if (!imagemUrl.trim()) {
-      toast.error("Envie uma imagem ou informe uma URL valida.");
+      toast.error("Envie uma imagem ou informe uma URL válida.");
       return;
     }
 
@@ -64,7 +64,7 @@ export function PresenteForm({
     setSaving(false);
 
     if (!response.ok) {
-      toast.error(data.error ?? "Nao foi possivel salvar este presente.");
+      toast.error(data.error ?? "Não foi possível salvar este presente.");
       return;
     }
 
@@ -92,7 +92,7 @@ export function PresenteForm({
         <Input
           value={descricao ?? ""}
           onChange={(event) => setDescricao(event.target.value)}
-          placeholder="Descricao breve"
+          placeholder="Descrição breve"
         />
         <select
           value={categoria}
@@ -113,10 +113,10 @@ export function PresenteForm({
           <Button className="w-full" onClick={handleSave} disabled={saving}>
             {saving
               ? initialValue
-                ? "Salvando alteracoes..."
+                ? "Salvando alterações..."
                 : "Criando presente..."
               : initialValue
-                ? "Salvar alteracoes"
+                ? "Salvar alterações"
                 : "Criar presente"}
           </Button>
         </div>

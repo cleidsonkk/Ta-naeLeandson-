@@ -34,7 +34,7 @@ export function HeroSection() {
               transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
               className="font-display text-6xl italic leading-none md:text-8xl"
             >
-              Leandson & Taína
+              Leandson & Taina
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 24, scale: 0.98 }}
@@ -51,7 +51,7 @@ export function HeroSection() {
               transition={{ delay: 0.9, duration: 0.6, ease: "easeOut" }}
               className="max-w-2xl font-display text-2xl italic leading-relaxed text-[var(--color-cream-muted)] md:text-3xl"
             >
-              Celebramos o inicio do nosso para sempre.
+              Celebramos o início do nosso para sempre.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, scale: 0.96 }}

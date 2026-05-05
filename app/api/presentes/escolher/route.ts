@@ -7,7 +7,7 @@ export async function POST(request: Request) {
   const { presenteId, nome, telefone } = await request.json();
 
   if (typeof presenteId !== "string" || !presenteId) {
-    return NextResponse.json({ error: "Presente invalido." }, { status: 400 });
+    return NextResponse.json({ error: "Presente inválido." }, { status: 400 });
   }
 
   if (typeof nome !== "string" || nome.trim().length < 3) {
@@ -19,7 +19,7 @@ export async function POST(request: Request) {
 
   if (typeof telefone !== "string" || normalizePhone(telefone).length < 10) {
     return NextResponse.json(
-      { error: "Informe um celular valido para reservar o presente." },
+      { error: "Informe um celular válido para reservar o presente." },
       { status: 400 },
     );
   }
@@ -71,7 +71,7 @@ export async function POST(request: Request) {
     }
 
     return NextResponse.json(
-      { error: "Nao foi possivel concluir a reserva agora." },
+      { error: "Não foi possível concluir a reserva agora." },
       { status: 500 },
     );
   }

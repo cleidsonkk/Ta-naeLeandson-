@@ -7,19 +7,19 @@ const storyTimelineItems = [
     data: "24/11/2025",
     titulo: "Primeiro Encontro",
     descricao:
-      "O instante em que tudo comecou e uma simples conversa se transformou em conexao, cumplicidade e desejo de construir uma historia a dois.",
+      "O instante em que tudo começou e uma simples conversa se transformou em conexão, cumplicidade e desejo de construir uma história a dois.",
   },
   {
     data: "04/04/2026",
     titulo: "O Pedido",
     descricao:
-      "Com emocao, brilho nos olhos e a certeza do amor, escolhemos transformar sentimento em promessa e compromisso para toda a vida.",
+      "Com emoção, brilho nos olhos e a certeza do amor, escolhemos transformar sentimento em promessa e compromisso para toda a vida.",
   },
   {
     data: "24/01/2027",
     titulo: "O Grande Dia",
     descricao:
-      "O dia em que celebraremos nosso para sempre, cercados por pessoas especiais e por tudo o que tornou essa jornada inesquecivel.",
+      "O dia em que celebraremos nosso para sempre, cercados por pessoas especiais e por tudo o que tornou essa jornada inesquecível.",
   },
 ] as const;
 
@@ -27,7 +27,7 @@ export function StoryTimeline() {
   return (
     <section className="page-shell">
       <div className="mb-10">
-        <p className="eyebrow">Nossa Historia</p>
+        <p className="eyebrow">Nossa História</p>
         <h2 className="font-display text-4xl italic md:text-5xl">
           Uma linha do tempo marcada por encontro, promessa e destino
         </h2>

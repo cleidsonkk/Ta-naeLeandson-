@@ -28,13 +28,13 @@ export default function AdminLoginPage() {
       };
 
       if (!response.ok) {
-        toast.error(data.error ?? "Credenciais invalidas.");
+        toast.error(data.error ?? "Credenciais inválidas.");
         return;
       }
 
       window.location.assign("/admin");
     } catch {
-      toast.error("Nao foi possivel entrar agora. Tente novamente.");
+      toast.error("Não foi possível entrar agora. Tente novamente.");
     } finally {
       setLoading(false);
     }
