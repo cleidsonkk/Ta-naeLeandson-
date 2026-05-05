@@ -16,6 +16,11 @@ export function formatWeddingDate(date: string) {
   }).format(new Date(date));
 }
 
+export function formatWeddingDateHero(date: string) {
+  const formatted = formatWeddingDate(date);
+  return formatted.charAt(0).toUpperCase() + formatted.slice(1);
+}
+
 export function sortPresentes(presentes: Presente[]) {
   return [...presentes].sort((a, b) => a.ordem - b.ordem);
 }

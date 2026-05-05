@@ -98,6 +98,32 @@ a {
   color: var(--color-cream) !important;
 }
 
+.hero-date-chip {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-date-chip::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.03) 35%,
+    rgba(232, 201, 122, 0.16) 50%,
+    transparent 70%
+  );
+  transform: translateX(-130%);
+  animation: heroSweep 5.4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.hero-date-glow {
+  box-shadow: 0 0 0 rgba(232, 201, 122, 0.25);
+  animation: pulseGold 2.8s ease-in-out infinite;
+}
+
 @keyframes shimmer {
   from {
     background-position: 200% 0;
@@ -124,6 +150,16 @@ a {
   }
   50% {
     box-shadow: 0 0 24px rgba(201, 168, 76, 0.3);
+  }
+}
+
+@keyframes heroSweep {
+  0%,
+  100% {
+    transform: translateX(-130%);
+  }
+  55% {
+    transform: translateX(130%);
   }
 }
 
