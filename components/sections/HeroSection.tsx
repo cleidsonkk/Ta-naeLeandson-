@@ -1,8 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { formatWeddingDateHero } from "@/lib/utils";
 import { WEDDING_DATE } from "@/lib/constants";
@@ -63,14 +63,29 @@ export function HeroSection() {
               </Link>
             </motion.div>
           </motion.div>
-          <div className="relative hidden min-h-[420px] items-center justify-center lg:flex">
-            <div
-              className="flex h-64 w-64 items-center justify-center border border-[rgba(201,168,76,0.35)] bg-[rgba(255,255,255,0.03)]"
-              style={{ animation: "float 6s ease-in-out infinite" }}
-            >
-              <Sparkles className="h-20 w-20 text-[var(--color-gold-light)]" />
+          <motion.div
+            initial={{ opacity: 0, x: 36, rotate: 4, scale: 0.96 }}
+            animate={{ opacity: 1, x: 0, rotate: 0, scale: 1 }}
+            transition={{ delay: 0.45, duration: 0.9, ease: "easeOut" }}
+            className="relative mx-auto flex w-full max-w-md items-center justify-center lg:min-h-[420px]"
+          >
+            <div className="hero-photo-frame relative w-[78vw] max-w-[360px] sm:w-[360px] lg:w-[380px]">
+              <div className="hero-photo-orbit absolute -inset-5 rounded-[2rem] border border-[rgba(201,168,76,0.18)]" />
+              <div className="hero-photo-shell relative overflow-hidden rounded-[2rem] border border-[rgba(201,168,76,0.34)] bg-[rgba(255,255,255,0.03)] p-3 shadow-[0_28px_80px_rgba(0,0,0,0.42)] backdrop-blur-sm">
+                <div className="relative aspect-[4/5] overflow-hidden rounded-[1.5rem]">
+                  <Image
+                    src="/hero-casal.jpeg"
+                    alt="Leandson e Taina sorrindo juntos"
+                    fill
+                    priority
+                    sizes="(max-width: 640px) 78vw, (max-width: 1024px) 360px, 380px"
+                    className="object-cover object-center"
+                  />
+                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(13,11,10,0.02),rgba(13,11,10,0.34))]" />
+                </div>
+              </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
