@@ -1,27 +1,14 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, DM_Sans } from "next/font/google";
 import { Toaster } from "sonner";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { Providers } from "@/components/providers";
 import "./globals.css";
 
-const cormorant = Cormorant_Garamond({
-  subsets: ["latin"],
-  variable: "--font-cormorant",
-  weight: ["400", "500", "600", "700"],
-});
-
-const dmSans = DM_Sans({
-  subsets: ["latin"],
-  variable: "--font-dm-sans",
-  weight: ["400", "500", "700"],
-});
-
 export const metadata: Metadata = {
-  title: "Leandson & Taína",
+  title: "Leandson & Ta\u00edna",
   description:
-    "Site de casamento premium com lista de presentes, história do casal e painel administrativo.",
+    "Site de casamento premium com lista de presentes, hist\u00f3ria do casal e painel administrativo.",
 };
 
 export default function RootLayout({
@@ -30,10 +17,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="pt-BR"
-      className={`${cormorant.variable} ${dmSans.variable} h-full`}
-    >
+    <html lang="pt-BR" className="h-full">
       <body className="min-h-full bg-[var(--color-bg)] font-sans text-[var(--color-cream)] antialiased">
         <Providers>
           <div className="grain fixed inset-0 pointer-events-none" />

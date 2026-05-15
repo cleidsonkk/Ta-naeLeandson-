@@ -1,13 +1,14 @@
 import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 import { getGuestReservationByPhone, reserveGiftForGuest } from "@/db/queries";
+import { MAX_GIFTS_PER_GUEST } from "@/lib/constants";
 import { formatPhone, normalizePhone } from "@/lib/utils";
 
 export async function POST(request: Request) {
   const { presenteId, nome, telefone } = await request.json();
 
   if (typeof presenteId !== "string" || !presenteId) {
-    return NextResponse.json({ error: "Presente inválido." }, { status: 400 });
+    return NextResponse.json({ error: "Presente inv\u00e1lido." }, { status: 400 });
   }
 
   if (typeof nome !== "string" || nome.trim().length < 3) {
@@ -19,7 +20,7 @@ export async function POST(request: Request) {
 
   if (typeof telefone !== "string" || normalizePhone(telefone).length < 10) {
     return NextResponse.json(
-      { error: "Informe um celular válido para reservar o presente." },
+      { error: "Informe um celular v\u00e1lido para reservar o presente." },
       { status: 400 },
     );
   }
@@ -39,24 +40,27 @@ export async function POST(request: Request) {
     if (error instanceof Error) {
       if (error.message === "DATABASE_UNAVAILABLE") {
         return NextResponse.json(
-          { error: "Banco de dados indisponivel no momento." },
+          { error: "Banco de dados indispon\u00edvel no momento." },
           { status: 503 },
         );
       }
 
-      if (error.message === "GUEST_ALREADY_HAS_GIFT") {
+      if (error.message === "GUEST_GIFT_LIMIT_REACHED") {
         const reservation = await getGuestReservationByPhone(telefone);
         const nomeRegistrado = reservation?.nome ?? nome.trim();
         const telefoneRegistrado = formatPhone(
           reservation?.telefone ?? normalizePhone(telefone),
         );
-        const presenteRegistrado = reservation?.presenteNome
-          ? ` para o presente ${reservation.presenteNome}`
-          : "";
+        const totalPresentes =
+          reservation?.totalPresentes ?? MAX_GIFTS_PER_GUEST;
+        const presentesRegistrados =
+          reservation?.presenteNomes?.length
+            ? ` Presentes j\u00e1 registrados: ${reservation.presenteNomes.join(", ")}.`
+            : "";
 
         return NextResponse.json(
           {
-            error: `Este numero ja escolheu um presente${presenteRegistrado}. Dados registrados: ${nomeRegistrado} - ${telefoneRegistrado}.`,
+            error: `Este n\u00famero j\u00e1 atingiu o limite de ${totalPresentes} presentes. Dados registrados: ${nomeRegistrado} - ${telefoneRegistrado}.${presentesRegistrados}`,
           },
           { status: 409 },
         );
@@ -71,7 +75,7 @@ export async function POST(request: Request) {
     }
 
     return NextResponse.json(
-      { error: "Não foi possível concluir a reserva agora." },
+      { error: "N\u00e3o foi poss\u00edvel concluir a reserva agora." },
       { status: 500 },
     );
   }

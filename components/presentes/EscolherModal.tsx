@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Modal } from "@/components/ui/Modal";
+import { MAX_GIFTS_PER_GUEST } from "@/lib/constants";
 import { formatPhone } from "@/lib/utils";
 import { Presente } from "@/types";
 
@@ -35,8 +36,9 @@ export function EscolherModal({
     >
       <div className="space-y-5">
         <p className="text-sm leading-7 text-[var(--color-cream-muted)]">
-          Você está escolhendo <strong>{presente?.nome}</strong>. Informe seu
+          Voc\u00ea est\u00e1 escolhendo <strong>{presente?.nome}</strong>. Informe seu
           nome completo e celular para registrarmos esse carinho na nossa lista.
+          Cada n\u00famero pode reservar at\u00e9 {MAX_GIFTS_PER_GUEST} presentes.
         </p>
         <Input
           placeholder="Seu nome completo"
@@ -50,7 +52,9 @@ export function EscolherModal({
         />
         <Button
           className="w-full"
-          disabled={loading || nome.trim().length < 3 || telefone.trim().length < 14}
+          disabled={
+            loading || nome.trim().length < 3 || telefone.trim().length < 14
+          }
           onClick={async () => {
             await onConfirm({ nome, telefone });
             setNome("");

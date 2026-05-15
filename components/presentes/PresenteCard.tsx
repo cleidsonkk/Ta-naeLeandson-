@@ -62,7 +62,7 @@ export function PresenteCard({
             {getCategoryLabel(presente.categoria)}
           </span>
           <span className="border border-[rgba(201,168,76,0.18)] px-2 py-1 text-[var(--color-cream-muted)]">
-            {presente.escolhido ? "Escolhido" : "Disponivel"}
+            {presente.escolhido ? "Escolhido" : "Dispon\u00edvel"}
           </span>
         </div>
         <div>
@@ -81,7 +81,7 @@ export function PresenteCard({
           onClick={() => onChoose(presente)}
         >
           {presente.escolhido ? (
-            "Presente ja reservado"
+            "Presente j\u00e1 reservado"
           ) : (
             <>
               <Gift size={16} className="mr-2" />

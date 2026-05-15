@@ -1,25 +1,26 @@
 import { CategoriaSlug, Presente, ThemeOption, TimelineItem } from "@/types";
 
 export const WEDDING_DATE = "2027-01-24T00:00:00-03:00";
+export const MAX_GIFTS_PER_GUEST = 5;
 export const GIFT_COLOR_NOTE =
   "Itens preferencialmente nas cores inox ou preto para manter a harmonia do nosso lar.";
 
-export const LOVE_MESSAGE = `Com muito amor, estamos iniciando um novo capítulo da nossa história e
-gostaríamos de compartilhar esse momento especial com você.
+export const LOVE_MESSAGE = `Com muito amor, estamos iniciando um novo cap\u00edtulo da nossa hist\u00f3ria e
+gostar\u00edamos de compartilhar esse momento especial com voc\u00ea.
 
-Preparamos nossa lista de casamento com itens que irão compor nosso lar.
-Caso deseje nos presentear, ficaremos imensamente felizes com sua contribuição.
+Preparamos nossa lista de casamento com itens que ir\u00e3o compor nosso lar.
+Caso deseje nos presentear, ficaremos imensamente felizes com sua contribui\u00e7\u00e3o.
 
 Pensamos em cada detalhe com carinho e para manter a harmonia do nosso cantinho,
-os eletrodomésticos foram escolhidos preferencialmente nas cores preta ou inox.`;
+os eletrodom\u00e9sticos foram escolhidos preferencialmente nas cores preta ou inox.`;
 
 export const CATEGORY_LABELS: Record<CategoriaSlug, string> = {
   cozinha: "Cozinha",
   quarto: "Quarto",
   sala: "Sala",
   banheiro: "Banheiro",
-  area_servico: "Área de Serviço",
-  gourmet: "Área Gourmet",
+  area_servico: "\u00c1rea de Servi\u00e7o",
+  gourmet: "\u00c1rea Gourmet",
   kit: "Kits",
 };
 
@@ -51,7 +52,7 @@ export const TIMELINE_ITEMS: TimelineItem[] = [
     ano: "2019",
     titulo: "O Primeiro Encontro",
     descricao:
-      "O começo de uma conversa que logo virou abrigo, cumplicidade e vontade de dividir a vida.",
+      "O come\u00e7o de uma conversa que logo virou abrigo, cumplicidade e vontade de dividir a vida.",
   },
   {
     ano: "2021",
@@ -63,13 +64,13 @@ export const TIMELINE_ITEMS: TimelineItem[] = [
     ano: "2024",
     titulo: "O Pedido",
     descricao:
-      "Com emoção, promessa e brilho nos olhos, escolhemos transformar amor em compromisso eterno.",
+      "Com emo\u00e7\u00e3o, promessa e brilho nos olhos, escolhemos transformar amor em compromisso eterno.",
   },
   {
     ano: "2027",
     titulo: "O Grande Dia",
     descricao:
-      "Agora celebramos o início do nosso lar, cercados por quem fez parte dessa história.",
+      "Agora celebramos o in\u00edcio do nosso lar, cercados por quem fez parte dessa hist\u00f3ria.",
   },
 ];
 
@@ -80,21 +81,21 @@ const presentesPorCategoria: Array<[CategoriaSlug, string[]]> = [
     "cozinha",
     [
       "Geladeira 3 portas",
-      "Fogão Cooktop Embutir",
+      "Fog\u00e3o Cooktop Embutir",
       "Micro-ondas",
       "Airfryer",
       "Panela de arroz",
-      "Cafeteira de cápsulas",
-      "Pipoqueira Elétrica inox",
+      "Cafeteira de c\u00e1psulas",
+      "Pipoqueira El\u00e9trica inox",
       "Espremedor de laranja",
-      "Depurador retrátil",
-      "Liquidificador portátil",
+      "Depurador retr\u00e1til",
+      "Liquidificador port\u00e1til",
       "Liquidificador",
       "Batedeira",
-      "Panela de pressão elétrica",
+      "Panela de press\u00e3o el\u00e9trica",
       "Bebedouro",
       "Pano de prato",
-      "Tábua de carne",
+      "T\u00e1bua de carne",
       "Escorredor inox",
       "Escorredor de pia inox",
       "Peneira grande inox",
@@ -103,21 +104,21 @@ const presentesPorCategoria: Array<[CategoriaSlug, string[]]> = [
       "Kit de quebrar caranguejo",
       "Formas de bolo",
       "Copos",
-      "Taças",
-      "Xícaras",
+      "Ta\u00e7as",
+      "X\u00edcaras",
       "Abridor de vinho",
       "Aparelho de jantar",
-      "Mesa de café da manhã na cama",
+      "Mesa de caf\u00e9 da manh\u00e3 na cama",
       "Escada",
-      "Escada pequena alumínio",
+      "Escada pequena alum\u00ednio",
       "Petisqueira",
       "Pote spray",
-      "Garrafa térmica",
-      "Tábua de passar",
-      "Taça de sobremesa",
+      "Garrafa t\u00e9rmica",
+      "T\u00e1bua de passar",
+      "Ta\u00e7a de sobremesa",
       "Cuscuzeiro",
       "Travessas de vidro",
-      "Conjunto de vasos herméticos em Bambu (Boleira, Queijeira, Manteigueira e frios)",
+      "Conjunto de vasos herm\u00e9ticos em Bambu (Boleira, Queijeira, Manteigueira e frios)",
       "Jarra de suco",
       "Conjunto de panelas",
     ],
@@ -125,28 +126,28 @@ const presentesPorCategoria: Array<[CategoriaSlug, string[]]> = [
   [
     "quarto",
     [
-      "Televisão",
+      "Televis\u00e3o",
       "Almofadas",
       "Travesseiros",
       "Jogo de cama",
       "Kit edredom casal Queen",
       "Cortina",
-      "Lençol",
+      "Len\u00e7ol",
       "Fronha",
       "Ar-condicionado 12.000 BTUs",
       "Tapete Passadeira",
       "Ferro de passar",
       "Ferro a vapor",
-      "Balança",
+      "Balan\u00e7a",
       "Cabides",
-      "Escova de cabelo rotatória",
+      "Escova de cabelo rotat\u00f3ria",
       "Prancha de cabelo",
     ],
   ],
   [
     "kit",
     [
-      "Kit completo: Tesoura, Alicate, Cortador de unha, Pinça, Agulha, Linhas, Caixa organizadora",
+      "Kit completo: Tesoura, Alicate, Cortador de unha, Pin\u00e7a, Agulha, Linhas, Caixa organizadora",
     ],
   ],
   ["sala", ["Tapete grande", "Ar-condicionado 16.000 BTUs", "Tapete para porta"]],
@@ -154,13 +155,13 @@ const presentesPorCategoria: Array<[CategoriaSlug, string[]]> = [
   [
     "area_servico",
     [
-      "Máquina de lavar lava e seca",
-      "Varal retrátil",
-      "Aspirador de pó",
-      "Jato (lavadora de pressão)",
+      "M\u00e1quina de lavar lava e seca",
+      "Varal retr\u00e1til",
+      "Aspirador de p\u00f3",
+      "Jato (lavadora de press\u00e3o)",
       "Cesto de roupa suja em Bambu",
       "Mop",
-      "Kit Limpeza: Vassoura, Rodo, Pá, Balde, Pano de chão, Pregadores",
+      "Kit Limpeza: Vassoura, Rodo, P\u00e1, Balde, Pano de ch\u00e3o, Pregadores",
     ],
   ],
   [
@@ -183,7 +184,7 @@ export const GIFTS_SEED: Presente[] = presentesPorCategoria.flatMap(
       descricao:
         categoria === "cozinha"
           ? "Selecionado com cuidado para compor um lar elegante, funcional e acolhedor."
-          : "Item especial para construir cada ambiente do nosso novo capítulo.",
+          : "Item especial para construir cada ambiente do nosso novo cap\u00edtulo.",
       imagemUrl: PLACEHOLDER,
       escolhido: false,
       categoria,

@@ -1,7 +1,7 @@
 import { desc, eq, sql } from "drizzle-orm";
 import { getDb } from "@/db";
 import { convidados, presentes } from "@/db/schema";
-import { GIFTS_SEED } from "@/lib/constants";
+import { GIFTS_SEED, MAX_GIFTS_PER_GUEST } from "@/lib/constants";
 import { normalizePhone } from "@/lib/utils";
 import { DashboardStats, Presente } from "@/types";
 
@@ -68,35 +68,35 @@ export async function getGuestReservationByPhone(telefone: string) {
 
   const rows = await db.execute(sql`
     select
-      coalesce(p.escolhido_por->>'nome', c.nome_convidado) as nome_convidado,
-      coalesce(p.escolhido_por->>'telefone', c.telefone) as telefone,
-      coalesce(c.presente_id, p.id) as presente_id,
-      p.nome as presente_nome
+      max(coalesce(p.escolhido_por->>'nome', c.nome_convidado)) as nome_convidado,
+      max(coalesce(p.escolhido_por->>'telefone', c.telefone)) as telefone,
+      count(*)::int as total_presentes,
+      array_remove(array_agg(p.nome order by p.updated_at desc), null) as presente_nomes
     from presentes p
     left join convidados c
       on c.telefone = ${telefoneNormalizado}
     where p.escolhido = true
       and p.escolhido_por->>'telefone' = ${telefoneNormalizado}
-    limit 1
   `);
 
   const reservation = rows.rows[0] as
     | {
         nome_convidado: string | null;
         telefone: string | null;
-        presente_id: string | null;
-        presente_nome: string | null;
+        total_presentes: number;
+        presente_nomes: string[] | null;
       }
     | undefined;
 
-  if (!reservation?.presente_id) {
+  if (!reservation || reservation.total_presentes < 1) {
     return null;
   }
 
   return {
     nome: reservation.nome_convidado,
     telefone: reservation.telefone,
-    presenteNome: reservation.presente_nome,
+    totalPresentes: reservation.total_presentes,
+    presenteNomes: reservation.presente_nomes ?? [],
   };
 }
 
@@ -136,8 +136,8 @@ export async function reserveGiftForGuest({
       from convidados
       where telefone = ${telefoneNormalizado}
     ),
-    existing_phone_reservation as (
-      select id
+    existing_phone_reservations as (
+      select count(*)::int as total
       from presentes
       where escolhido = true
         and escolhido_por->>'telefone' = ${telefoneNormalizado}
@@ -155,23 +155,23 @@ export async function reserveGiftForGuest({
       where
         id = ${presenteId}
         and escolhido = false
-        and not exists (
-          select 1
-          from existing_phone_reservation
-        )
+        and (
+          select total
+          from existing_phone_reservations
+        ) < ${MAX_GIFTS_PER_GUEST}
       returning id
     )
     select
-      exists(
-        select 1
-        from existing_phone_reservation
-      ) as guest_already_has_gift,
+      (
+        select total
+        from existing_phone_reservations
+      ) as guest_reserved_count,
       exists(select 1 from updated_gift) as gift_reserved
   `);
 
   const reservation = reservationResult.rows[0] as
     | {
-        guest_already_has_gift: boolean;
+        guest_reserved_count: number;
         gift_reserved: boolean;
       }
     | undefined;
@@ -180,8 +180,8 @@ export async function reserveGiftForGuest({
     throw new Error("RESERVATION_FAILED");
   }
 
-  if (reservation.guest_already_has_gift) {
-    throw new Error("GUEST_ALREADY_HAS_GIFT");
+  if (reservation.guest_reserved_count >= MAX_GIFTS_PER_GUEST) {
+    throw new Error("GUEST_GIFT_LIMIT_REACHED");
   }
 
   if (!reservation.gift_reserved) {
